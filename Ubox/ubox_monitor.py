@@ -23,11 +23,10 @@ while isLoop:
         if len(last_products) > 0:
             fresh_meat = []
             for key in products:
-                if last_products.get(key, 0) > 0 and products.get(key, 0) > 0:
+                if last_products.get(key, 0) == 0 and products.get(key, 0) > 0:
                     fresh_meat.append(key)
             if len(fresh_meat) > 0:
-                result = reduce(lambda x, y: x + ", " + y, fresh_meat, "").strip(", ")
-                ctypes.windll.user32.MessageBoxA(0, (u'%s 上货啦！' % result).encode("gbk"), u'行动吧吃货！'.encode("gbk"), 0)
+                ctypes.windll.user32.MessageBoxA(0, (u'%s 上货啦！' % ' - '.join(fresh_meat)).encode("gbk"), u'行动吧吃货！'.encode("gbk"), 0)
                 isLoop = False
         last_products = products.copy()
     time.sleep(60)

@@ -39,8 +39,10 @@ total = reduce(lambda x, y: x + y.price, all, 0)
 print '***********************************'
 print u'总计:', total
 times = int(total) / man
+if times > len(all) / 3:
+    times = len(all) / 3
 discount = times * minus
-if (total + minus) / man > times:
+if int(total + minus) / man > times:
     print u'可以免费凑一新单，赶紧加餐'
 print u'预计需要%s单，共满减%s' % (times, discount)
 print '***********************************'
