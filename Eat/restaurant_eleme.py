@@ -15,6 +15,10 @@ class order(object):
             print '%s - %s' % (meal, menu.get(meal, 0)),
         print
 
+# 满减配置
+man = 50
+minus = 15
+extra = 2
 
 restaurant = "mh-fzhjtsjflszm"
 template = "http://r.ele.me/%s"
@@ -27,11 +31,8 @@ for line in response.text.split('\n'):
             for key in kind["foods"]:  # 有图 无图
                 for each in kind["foods"][key]:  # 每种食物
                     if int(each["stock"]) > 0:  # 有库存就加入菜单
-                        menu[each["name"]] = each["price"]
+                        menu[each["name"]] = each["price"] - extra
 
-# 满减配置
-man = 50
-minus = 15
 
 all = []
 for line in open("eat.txt"):
@@ -51,7 +52,7 @@ print '***********************************'
 print u'紧张激烈的计算吃货们的嫖资...'
 percentage = 1 - discount / float(total)
 now = datetime.now()
-filename = '%4d-%02d-%02d-eleme.txt' % (now.year, now.month, now.day)
+filename = '%4d-%02d-%02d.txt' % (now.year, now.month, now.day)
 f = open(filename, "w")
 for each in all:
     f.write('%s %.2f\n' % (each.name.encode('utf-8'), each.price * percentage))
