@@ -18,7 +18,7 @@ class order(object):
 # 满减配置
 man = 50
 minus = 15
-extra = 2
+activity = 2  # 10:30 前 -2 活动
 
 restaurant = "mh-fzhjtsjflszm"
 template = "http://r.ele.me/%s"
@@ -28,11 +28,15 @@ for line in response.text.split('\n'):
     if line.strip().startswith("var menu ="):
         raw_menu = json.loads(line.strip("var menu = ;"))
         for kind in raw_menu:  # 分类
+            # 判断是否参加10:30活动
+            if kind["isActivity"]:
+                extra = activity
+            else:
+                extra = 0
             for key in kind["foods"]:  # 有图 无图
                 for each in kind["foods"][key]:  # 每种食物
                     if int(each["stock"]) > 0:  # 有库存就加入菜单
                         menu[each["name"]] = each["price"] - extra
-
 
 all = []
 for line in open("eat.txt"):

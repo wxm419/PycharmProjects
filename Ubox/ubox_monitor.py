@@ -6,7 +6,7 @@ import time
 import datetime
 import ctypes
 
-ubox_id = "0721577"
+ubox_id = "0721575"
 template = "http://buy.ubox.cn/index/vminfo/%s/0"
 last_products = {}
 products = {}
