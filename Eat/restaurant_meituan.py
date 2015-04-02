@@ -48,9 +48,8 @@ print u'预计需要%s单，共满减%s' % (times, discount)
 print '***********************************'
 print u'紧张激烈的计算吃货们的嫖资...'
 percentage = 1 - discount / float(total)
-#now = datetime.now()
-#filename = '%4d-%02d-%02d.txt' % (now.year, now.month, now.day)
-filename = '2015-03-29.txt'
+now = datetime.now()
+filename = '%4d-%02d-%02d.txt' % (now.year, now.month, now.day)
 f = open(filename, "w")
 for each in all:
     f.write('%s %.2f\n' % (each.name.encode('utf-8'), each.price * percentage))
