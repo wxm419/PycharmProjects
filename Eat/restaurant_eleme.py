@@ -17,7 +17,7 @@ class order(object):
 
 # 满减配置
 man = 50
-minus = 15
+minus = 17
 activity = 2  # 10:30 前 -2 活动
 
 restaurant = "mh-fzhjtsjflszm"

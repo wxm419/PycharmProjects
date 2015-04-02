@@ -15,19 +15,19 @@ class order(object):
         print
 
 # 这里填入饭店ID 如http://waimai.meituan.com/restaurant/20212?pos=0 20212就是ID
-restaurant = 74674
+restaurant = 93932
 template = "http://waimai.meituan.com/restaurant/%s"
 response = requests.get(template % restaurant)
 menu = {}
 for line in response.text.split('\n'):
-    row = line.strip()
-    if row.startswith('\"name\"'):
-        name = row.strip("\"name\": ,")
-    if row.startswith('\"price\"'):
-        menu[name] = row.strip("\"price\": ,")
+    row = line.strip(" ,")
+    if row.startswith('\"name\":'):
+        name = row.strip("\"name\": ")
+    if row.startswith('\"price\":'):
+        menu[name] = row.strip("\"price\": ")
 # 满减配置
 man = 50
-minus = 15
+minus = 17
 
 all = []
 for line in open("eat.txt"):
@@ -48,8 +48,9 @@ print u'预计需要%s单，共满减%s' % (times, discount)
 print '***********************************'
 print u'紧张激烈的计算吃货们的嫖资...'
 percentage = 1 - discount / float(total)
-now = datetime.now()
-filename = '%4d-%02d-%02d.txt' % (now.year, now.month, now.day)
+#now = datetime.now()
+#filename = '%4d-%02d-%02d.txt' % (now.year, now.month, now.day)
+filename = '2015-03-29.txt'
 f = open(filename, "w")
 for each in all:
     f.write('%s %.2f\n' % (each.name.encode('utf-8'), each.price * percentage))
