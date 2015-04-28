@@ -15,7 +15,7 @@ class order(object):
         print
 
 # 这里填入饭店ID 如http://waimai.meituan.com/restaurant/20212?pos=0 20212就是ID
-restaurant = 93932
+restaurant = 20212
 template = "http://waimai.meituan.com/restaurant/%s"
 response = requests.get(template % restaurant)
 menu = {}

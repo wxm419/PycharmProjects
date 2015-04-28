@@ -18,9 +18,9 @@ class order(object):
 # 满减配置
 man = 50
 minus = 17
-activity = 2  # 10:30 前 -2 活动
+activity = 0  # 10:30 前 -2 活动
 
-restaurant = "mh-fzhjtsjflszm"
+restaurant = "mh-fz-klxf"
 template = "http://r.ele.me/%s"
 response = requests.get(template % restaurant)
 menu = {}
